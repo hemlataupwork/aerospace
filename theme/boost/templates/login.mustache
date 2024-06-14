@@ -1,0 +1,99 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_boost/login
+
+    Login page template
+
+    Example context (json):
+    {
+        "output": {
+            "doctype": "<!DOCTYPE html>",
+            "page_title": "Login page",
+            "favicon": "favicon.ico",
+            "main_content": "<h1>Headers keep HTML validators happy</h1>"
+        }
+    }
+}}
+{{> theme_boost/head }}
+<style>
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place behind other content */
+    overflow: hidden;
+    display : none;
+}
+
+.video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+.pagelayout-login #page {
+    background: inherit !important;
+    background-image: inherit !important;
+    background-repeat: repeat-x;
+}
+</style>
+<body {{{ bodyattributes }}}>
+{{> core/local/toast/wrapper}}
+
+<div id="page-wrapper">
+
+    {{{ output.standard_top_of_body_html }}}
+<div class="video-container">
+    <video autoplay muted loop>
+        <source src="https://videos.pond5.com/dark-swarm-drones-blue-background-footage-058083445_main_xxl.mp4" type="video/mp4">
+        <!-- Add additional <source> elements for different video formats -->
+        Your browser does not support the video tag.
+    </video>
+</div>
+    <div id="page" class="container-fluid pt-5 mt-0">
+        <div id="page-content" class="row">
+            <div id="region-main-box" class="col-12">
+                <section id="region-main" class="col-12 h-100" aria-label="{{#str}}content{{/str}}">
+                <div class="login-wrapper">
+
+                    <div class="login-container">
+                    {{{ output.main_content }}}
+                    </div>
+                </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    {{> theme_boost/footer }}
+</div>
+
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader'], function() {
+  M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

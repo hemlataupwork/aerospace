@@ -1,0 +1,2067 @@
+<!-- Frontend developed by Jazib Zaidi -->
+
+<style>
+  .custome-bar-chart {
+    display: flex;
+    column-gap: 10px;
+  }
+
+  .canvassid-custom-data {
+    display: flex;
+    flex-direction: column;
+    row-gap: 18px;
+    background-color: var(--color-white);
+    border-radius: 40px;
+    box-shadow: var(--box-shadow);
+    padding: 34px !important;
+  }
+
+  .canvassid-custom-data {
+    position: absolute;
+    left: 10px;
+  }
+
+  .notification-for-wishlist {
+    position: fixed;
+    top: -70px;
+    right: 50%;
+    width: 330px;
+    left: 50%;
+    transform: translate(-50%);
+    transition: 0.3s;
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: 2px solid #9BA1FF;
+    z-index: 99999999999999999;
+    /* background: rgb(77,197,145);
+background: linear-gradient(187deg, rgba(77,197,145,1) 0%, rgba(99,56,255,0.5354516806722689) 100%); */
+  }
+
+  canvas#canvassid {
+    height: 254px !important;
+    margin-left: 214px !important;
+  }
+
+  .notification {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .notification-for-wishlist-togale {
+    top: 84px !important;
+  }
+
+  .custome-table-transtion {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 34px 0;
+    column-gap: 36px;
+  }
+
+  .course-data-div {
+    width: 100%;
+  }
+
+  .splide__pagination {
+    bottom: -1.5em !important;
+    left: 0;
+    padding: 0 1em;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+  }
+
+  .splide__pagination__page.is-active {
+    background: #9ba1ff !important;
+    transform: scale(1.4);
+    z-index: 1;
+  }
+
+  .splide {
+    width: 36vw !important;
+  }
+
+  img.course-img-upcoming {
+
+    height: 115px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  img.course-img {
+    width: 97px;
+    height: 76px;
+    object-fit: contain;
+    border: 1px solid #e3e3e3;
+    border-radius: 17px;
+  }
+
+  a.view-all p {
+    color: #9BA1FF;
+  }
+
+  .custome-chart-bar {
+    display: flex;
+
+  }
+
+  .custome-chart-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 7px;
+  }
+
+  .single-row {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* height: 178px; */
+  }
+
+  .custome-Transactions {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px 0;
+    margin-top: 26px;
+  }
+
+  .single-row-img {
+    border: 1px solid #e7e7e7;
+    border-radius: 11px;
+  }
+
+  .course-details {
+    padding: 12px;
+  }
+
+  .single-row {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* height: 178px; */
+    border-bottom: 1px solid #e9e9e9;
+  }
+
+  .custome-value-heading {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 19px;
+  }
+
+  img.course-img-upcoming {
+    width: 100%;
+  }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link href="
+https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
+" rel="stylesheet">
+<!-- swiper js -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<!--  -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" /> -->
+<!--  -->
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+  @import "https://cdn.jsdelivr.net/npm/open-props@1.6.17/open-props.min.css";
+
+  .app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    gap: 1em;
+    font-family: 'Montserrat';
+  }
+
+  .splide {
+    max-width: 70vw;
+  }
+
+  .splide__slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .splide__slide__container {
+    width: 208px;
+    aspect-ratio: 16/9;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 0.4em;
+    display: flex;
+    align-items: end;
+    margin: 13px;
+    border-radius: 10px;
+
+    cursor: pointer;
+    transition: background-color 250ms ease-in-out, height 300ms var(--ease-bounce-1);
+  }
+
+  .splide__slide__container h1 {
+    font-family: "Montserrat";
+    margin-left: 1em;
+    color: white;
+  }
+
+  .course-details {
+    align-items: baseline;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    column-gap: 10px;
+  }
+
+  .course-details h2 {
+    font-size: 15px;
+  }
+
+  .canvassid-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  /* ul:has(.splide__slide__container:hover)
+.splide__slide__container:not(.splide__slide__container:hover) {
+background-color: gray;
+height: 100px;
+} */
+
+  .splide__slide__container h1 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 250ms ease-in-out, transform 250ms var(--ease-bounce-1);
+  }
+
+  /* .splide__slide__container:hover h1{
+opacity: 1;
+transform: translateY(0px);
+} */
+
+
+  .copiedd {
+    display: none;
+    position: absolute;
+
+    top: -54px;
+    left: 12px;
+    background: #5784f5;
+    padding: 9px;
+    border-radius: 13px;
+    color: white;
+  }
+
+  button.View-Course.Refral-code {
+    position: relative !important;
+  }
+
+  .copiedd::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #5784f5;
+    top: 33px;
+    left: 40%;
+    rotate: 223deg;
+  }
+</style>
+
+<div class="notification-for-wishlist">
+  <div class="notification">
+    <b> coursename </b> added to your wishlist
+  </div>
+</div>
+<!-- /* Frontend Code Start by Kailash  */ -->
+<!--  -->
+{{#is_student}}
+<!-- d-flex flex-column flex-md-row justify-content-between gap-2 -->
+<div class="">
+  <div class="toggle">
+    <!-- <div class="logo">
+      <img src="images/logo.png" />
+      <h2>croma<span class="danger">Prog</span></h2>
+    </div> -->
+    <div class="close" id="close-btn">
+      <span class="material-icons-sharp"> close </span>
+    </div>
+  </div>
+  <!-- start  -->
+  <main class="center-area">
+    <div class="main_center_area">
+      <div class="main_center_area_item_container  ">
+        <div class="main_center_area_item">
+          <div class="analyse">
+            <!-- <div class="sales">
+                <a href="{{config.wwwroot}}/local/runningbatch/batch_details.php">
+                <div class="status">
+                    <div class="info">
+                        <h3>Running</h3>
+                        <h1 class="mb-0">Batch</h1>
+                    </div>
+                    <div class="progresss">
+                        <i class="bi bi-window-stack"></i>
+                    </div>
+                </div></a>
+            </div>
+        {{#is_student}}
+            <div class="visits">
+                <a href="{{config.wwwroot}}/my/courses.php">
+                <div class="status">
+                    <div class="info">
+                        <h3>My</h3>
+                        <h1>Courses</h1>
+                    </div>
+                    <div class="progresss">
+                        <i class="bi bi-receipt-cutoff"></i>
+                      
+                    </div>
+                </div></a>
+            </div>
+            <div class="searches">
+                <a href="{{config.wwwroot}}/calendar/view.php?view=month">
+                <div class="status">
+                    <div class="info">
+                        <h3>View</h3>
+                        <h1>Calendar</h1>
+                    </div>
+                    <div class="progresss">
+                        <i class="bi bi-calendar2-range"></i>
+                    </div>
+                </div></a>
+            </div>
+            {{/is_student}}
+            {{^is_student}}
+            <div class="visits">
+                <a href="{{config.wwwroot}}/local/runningbatch/view_invoice_paid.php">
+                <div class="status">
+                    <div class="info">
+                        <h3>Invoice</h3>
+                        <h1 class="mb-0">Paid</h1>
+                    </div>
+                    <div class="progresss">
+                        <i class="bi bi-receipt-cutoff"></i>
+                      
+                    </div>
+                </div></a>
+            </div>
+            <div class="searches">
+                <a href="{{config.wwwroot}}/local/runningbatch/view_payment_history.php">
+                <div class="status">
+                    <div class="info">
+                        <h3>Payment</h3>
+                        <h1 class="mb-0">History</h1>
+                    </div>
+                    <div class="progresss">
+                        <i class="bi bi-credit-card-2-front-fill"></i>
+                    </div>
+                </div></a>
+            </div>
+            {{/is_student}} -->
+
+            <div class="banner-img">
+              <div class="text-banner">
+                <div class="user_card_details">
+
+                  <div class="user_name_text_container">
+                    <div class="user_name_text">
+
+                      <h2 class="userName-text " id="greeting">
+                        <h2 class="userName-text " id="name">Harshit</h2>
+                      </h2>
+
+                    </div>
+                    <div class="user_name_text_container">
+                      <p class="userdecs-text">
+                        We,ve got new fun activites for you
+                      </p>
+                    </div>
+                  </div>
+                  <div class="user_image">
+
+                    <img src="https://www.pngitem.com/pimgs/m/581-5813504_avatar-dummy-png-transparent-png.png"
+                      alt="user">
+                  </div>
+                </div>
+                <!-- <p class="userdecs-text">
+         We,ve got new fun activites for you
+        </p> -->
+              </div>
+              <div class="right-img-banner">
+                <img src="{{config.wwwroot}}/local/dashboard_main/image/dashboard-banner.png" alt="" />
+              </div>
+            </div>
+          </div>
+          <!--  today class -->
+          <div class="today_class mt-3">
+            <h1>Today Classes</h1>
+          </div>
+          <div class="">
+            <!-- <h1>Learning Time</h1> -->
+            <div class=" w-100 mt-2  " id="first_card">
+              <div class="section_container ">
+
+
+                <div class="left_section p-4">
+                  <h1>E vehicles the future of trans</h1>
+
+                  <p class="left_section_para   ">Lorem ipsum text about the class need to be added here please make
+                    content in this space</p>
+
+                  <div class="d-flex gap-2">
+                    <p class="teacher_name">Teacher Name: <span class="teacher_name2"> Harshit Suneja</span></p>
+                    <p>
+
+                      <a href="" class="view_teacher_details">View Teacher Profile</a>
+                    </p>
+                  </div>
+                  <button class="join_button dark">Join Now</button>
+                </div>
+                <div class="right_section pt-4 ">
+                  <div class="time todayTime_Date  e_vehicle_time" id="time_today"></div>
+                  <div class="todayDate  todayTime_Date e_vehicle_time" id="todayDate_today"></div>
+                  <div class="student_img" id="aerospace_image">
+                    <img src="https://yislms.com/aerospace/theme/img/aerospace.png" alt="student" class="aerospace">
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="time-breakdown-chart"> -->
+              <!-- <div class="percentage-chart percentage-chart-focus"> -->
+              <!-- <svg viewBox="0 0 36 36">
+            <path class="percentage-chart-bg" d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831" />
+            <path class="percentage-chart-stroke" stroke-dasharray="{{percentage}}, 100" d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831" />
+          </svg> -->
+              <!-- <div class="hours-count">{{hours}}h {{minutes}}m</div> -->
+              <!-- <div class="counter" >2h 35m</div> -->
+              <!-- </div> -->
+              <!-- <div class="chart-info">
+          <span class="box-class"></span>
+          <h4>Video</h4>
+        </div> -->
+              <!-- </div> -->
+              <!-- </div> -->
+              <!-- <h1>User Activity</h1>
+      <canvas id="barChart"></canvas> -->
+            </div>
+
+            <div class=" w-100 mt-4  " id="second_card">
+              <div class="section_container ">
+
+
+                <div class="left_section  p-4">
+                  <h1 class="card_text_color">Technology & Enterprenuer</h1>
+                  <p class="card_text_color  card_font">Lorem ipsum text about the class need to be added here please
+                    make content
+                    in
+                    this space</p>
+
+                  <div class="d-flex gap-2">
+                    <p class="card_text_color">Teacher Name:<span class="card_text_color1">Harshit Suneja</span></p>
+                    <p>
+
+                      <a href="" class="card_text_color view_teacher_profile1">View Teacher Profile</a>
+                    </p>
+                  </div>
+                  <div class="card_button d-flex gap-2">
+
+                    <button class="join_button">Join Now</button>
+                    <button class="join_button" id="second_btn">View Details</button>
+
+                  </div>
+                </div>
+                <div class="right_section pt-4 ">
+                  <div class="time todayTime_Date" id="time"></div>
+                  <div class="todayDate  todayTime_Date" id="todayDate"></div>
+                  <div class="student_img">
+                    <img src="https://yislms.com/aerospace/theme/img/student.png" alt="student">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main_center_area_item">
+          <div class="right-section" id="">
+            <div class="user-profile">
+              <div class="calendar" id="calendar">
+                <div class="calender-box-left-right">
+                  <div class="btn-group">
+                    <button class="custome-btn" onclick="prevMonth()">
+                      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M19.9242 9.55559L21.3525 10.9551L15.414 17.0159L21.4748 22.9545L20.0753 24.3828L13.3003 17.7445C13.2064 17.6527 13.1316 17.5432 13.08 17.4224C13.0285 17.3017 13.0013 17.1719 12.9999 17.0405C12.9986 16.9092 13.0232 16.7789 13.0722 16.6571C13.1213 16.5353 13.1939 16.4243 13.2859 16.3306L19.9242 9.55559Z"
+                          fill="#040404" />
+                      </svg>
+                    </button>
+                    <div class="month-year" id="month-year"></div>
+                    <button class="custome-btn" onclick="nextMonth()">
+                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12.9999 23.4141L11.5859 22.0001L17.5859 16.0001L11.5859 10.0001L12.9999 8.58606L19.7069 15.2931C19.7999 15.3858 19.8736 15.4961 19.9239 15.6174C19.9742 15.7387 20.0001 15.8687 20.0001 16.0001C20.0001 16.1314 19.9742 16.2614 19.9239 16.3828C19.8736 16.5041 19.7999 16.6143 19.7069 16.7071L12.9999 23.4141Z"
+                          fill="#040404" />
+                      </svg>
+                    </button>
+                  </div>
+                  <!-- <div class="month-year" id="month-year"></div> -->
+                </div>
+                <div class="custom-time">
+                  <h1 class="custome-time">12 : 22 : 59 PM</h1>
+                </div>
+                <table id="calendar-table">
+                  <thead>
+                    <tr>
+                      <th id="calender_day">Sun</th>
+                      <th id="calender_day">Mon</th>
+                      <th id="calender_day">Tue</th>
+                      <th id="calender_day">Wed</th>
+                      <th id="calender_day">Thu</th>
+                      <th id="calender_day">Fri</th>
+                      <th id="calender_day">Sat</th>
+                    </tr>
+                  </thead>
+                  <tbody id="calendar-body"></tbody>
+                </table>
+              </div>
+              <!-- <div class="logo">
+                    <img src="{{user_picture}}" alt="">
+                    <h2>{{userfirstname}} {{userlastname}}</h2>
+                    <p>{{user_role}}</p>
+                </div> -->
+              <!-- h1 -->
+
+            </div>
+            <!-- reminder -->
+            <div class="reminder_container">
+              <div class="reminder_heading">
+                <i class="fa-regular fa-bell notification_icon"></i>
+                <p class="reminder_item_heading">Reminder</p>
+
+              </div>
+              <div class="reminder_item_container">
+                <ul style="list-style: decimal;">
+
+
+                  <div class="reminder_item">
+                    <li class="reminder_item_heading_para"> Paper Craft Diy submission by Sunday</li>
+                    <button>Upload Now</button>
+                  </div>
+                  <div class="reminder_item">
+                    <li class="reminder_item_heading_para"> Activity Sumbission</li>
+                    <button>Upload Now</button>
+                  </div>
+                  <div class="reminder_item">
+                    <li class="reminder_item_heading_para"> New Free Videos uploaded in the library</li>
+                    <button>Upload Now</button>
+                  </div>
+                </ul>
+              </div>
+            </div>
+
+            <!-- classess taken -->
+            <div class="classess_taken_container">
+              <div class="class_item">
+                <div class="class_item_child">
+                  <p>Classes Taken:</p>
+                  <p>12</p>
+                </div>
+                <div class="class_item_child">
+                  <p>Course:</p>
+                  <p>04</p>
+
+                </div>
+
+              </div>
+              <!--  -->
+              <div class="view_progress_button">
+                <div>
+
+                  <button>
+                    View Progress
+                  </button>
+                </div>
+                <div class="flag_boy">
+
+                  <img src="https://yislms.com/aerospace/theme/img/flagboy.png" alt="">
+                </div>
+              </div>
+
+            </div>
+            <!--  -->
+            <div class="reminders d-none">
+              <div class="header">
+                <div class="reminders-text">
+                  <h2>Upcoming Event</h2>
+
+                </div>
+
+                see all
+              </div>
+              {{#eventarr}}
+              <div class="notification">
+                <div class="icon">
+                  <span class="material-icons-sharp"> volume_up </span>
+                </div>
+                <div class="content">
+                  <div class="info">
+                    <h3>{{eventname}}</h3>
+                    <small class="text_muted"> {{time}} </small>
+                  </div>
+                  <span class="material-icons-sharp"> more_vert </span>
+                </div>
+              </div>
+              {{/eventarr}}
+
+
+              <div class="d-none">
+                <div class="newcustome-payment">
+                  <h1>Payment History</h1>
+
+                  {{#paymenthistory}}
+                  <div class="custome-payment-box">
+                    <div class="">
+                      <h3>{{coursename}}</h3>
+                      <p>Status : {{status}}</p>
+                    </div>
+                    <div class="">
+                      <p>₹ {{price}}</p>
+                      <p>Day : {{paymenttime}}</p>
+                    </div>
+                  </div>
+                  {{/paymenthistory}}
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+      <div class="main_center_area_item_carousel_chart">
+
+        {{#data}}
+        <div class="course d-none">
+
+          <span>
+            <img class="course-img" src="{{courseimg}}" alt="">
+          </span>
+          <div class="text-course">
+            <h2>{{fullname}}</h2>
+            <p>Admin</p>
+          </div>
+          <div class="course-reting">
+            <p>{{coursestatus}}%</p>
+            <progress id="file" value="{{coursestatus}}" max="100"></progress>
+          </div>
+          <!-- <div class="course-reting">
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.44745 11.3593L12.0517 14.1332L10.83 8.90422L14.8986 5.38651L9.5386 4.93213L7.44745 0L5.35629 4.93213L0 5.38651L4.06858 8.90422L2.84691 14.1368L7.44745 11.3593Z"
+                      fill="#F5A623"
+                    />
+                  </svg>
+                  <p>4.3</p>
+                </div> -->
+          <button class="View-Course Refral-code" onclick="genraterefrelcode('{{id}}',this)">Refral code <span
+              class="copiedd">Copied</span></button>
+          <a href="{{config.wwwroot}}/course/view.php?id={{id}}">
+            <button class="View-Course">View Course</button>
+          </a>
+        </div>
+        <!--  third container -->
+        {{/data}}
+        <!-- <h1>Dashboard</h1> -->
+        <div class="carousel_container">
+
+
+
+          <section class="section ">
+            <h1 class="mt-3 new_activites">New Activites</h1>
+
+            <div class="swiper mySwiper container">
+              <div class="swiper-wrapper content">
+
+                <div class="swiper-slide ">
+
+                  <div class="image_div">
+                    <img src="https://yislms.com/aerospace/theme/img/student_img.png" alt="">
+                  </div>
+
+
+                  <div class="course_details_content">
+
+                    <h3 class="name   course_details" id="course_name">Technological & Enterprenuership</h3>
+                    <p class="profession  course_details">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    <div class="d-flex gap-2  	">
+                      <button class="view_details   course_content_button">View Details</button>
+                      <button class="enroll_me  course_content_button">Enroll Now</button>
+                    </div>
+                  </div>
+
+                </div>
+                <!--  -->
+
+              </div>
+
+            </div>
+
+            <div class="swiper-button-next d-none"></div>
+            <div class="swiper-button-prev d-none"></div>
+            <!-- <div class="swiper-pagination"></div> -->
+          </section>
+          <!--  -->
+          <!--  -->
+
+          <section class="section">
+            <h1 class="mt-3 new_activites">New Videos</h1>
+
+            <div class="swiper mySwiper1  container">
+              <div class="swiper-wrapper content">
+
+                <div class="swiper-slide ">
+
+                  <div class="image_div" id="video_img">
+                    <img src="https://yislms.com/aerospace/theme/img/dummy.png" alt="">
+                  </div>
+
+
+                  <div class="course_details_content" id="video_content_details">
+
+                    <h3 class="name   course_details" id="course_name">Technological & Enterprenuership</h3>
+                    <p class="profession  course_details">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    <div class="d-flex gap-2 justify-content-between">
+                      <button class="report   course_content_button">Report</button>
+                      <button class="enroll_me  course_content_button " id="enroll_me">Watch Now
+                        <a href="#"> <i class="fa-regular fa-circle-play"></i></a>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+                <!--  -->
+
+              </div>
+
+            </div>
+
+            <div class="swiper-button-next d-none"></div>
+            <div class="swiper-button-prev d-none"></div>
+            <!-- <div class="swiper-pagination"></div> -->
+          </section>
+        </div>
+        <!-- bar chat -->
+        <div class="my_learning_container">
+          <h1 class="my_learning_container_heading new_activites"> My Learning</h1>
+          <div class="chart_container">
+            <div class="chart_item">
+              <div class="chart_item_second">
+                <div class="chart_item_one">
+                  <p class="this_week_details">This Week</p>
+
+                  <canvas id="barChart" class="barChart1"></canvas>
+                </div>
+                <div class="create_line_div"></div>
+
+                <div class="track_performance">
+                  <p class="track_performance_heading">Overall Performances</p>
+                  <div class="track_performance_container">
+                    <div class="track_performance_item ">
+                      <div class="track_performance_item_one">
+                        <div class="hours_rating ">
+                          <p>345</p>
+                          <p>Hours</p>
+                        </div>
+                        <div class="total_learning">
+                          <p>Total</p>
+                          <p>Learning</p>
+                        </div>
+                      </div>
+                      <div class="track_performance_item_one">
+                        <div class="hours_rating">
+                          <p>345</p>
+                          <p>Hours</p>
+                        </div>
+                        <div class="total_learning">
+                          <p>Total</p>
+                          <p>Learning</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!--  -->
+                    <div class="track_performance_item">
+                      <div class="track_performance_item_one">
+                        <div class="hours_rating">
+                          <p>345</p>
+                          <p>Hours</p>
+                        </div>
+                        <div class="total_learning">
+                          <p>Total</p>
+                          <p>Learning</p>
+                        </div>
+                      </div>
+                      <div class="track_performance_item_one">
+                        <div class="hours_rating">
+                          <p>345</p>
+                          <p>Hours</p>
+                        </div>
+                        <div class="total_learning">
+                          <p>Total</p>
+                          <p>Learning</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+
+            </div>
+          </div>
+        </div>
+
+        <!-- footer -->
+        <footer>
+          <div class="footer_container">
+            <div class="footer_item">
+              <img src="https://yislms.com/aerospace/theme/img/child1-removebg-preview.png" alt="child1">
+            </div>
+            <div class="footer_item">
+              <img src="https://yislms.com/aerospace/theme/img/child2-removebg-preview.png" alt="child1">
+            </div>
+            <div class="footer_item">
+              <img src="https://yislms.com/aerospace/theme/img/child3-removebg-preview.png" alt="child1">
+            </div>
+          </div>
+        </footer>
+      </div>
+
+    </div>
+    <div class="d-none">
+      <div class="analyse">
+        <!-- <div class="sales">
+                  <a href="{{config.wwwroot}}/local/runningbatch/batch_details.php">
+                  <div class="status">
+                      <div class="info">
+                          <h3>Running</h3>
+                          <h1 class="mb-0">Batch</h1>
+                      </div>
+                      <div class="progresss">
+                          <i class="bi bi-window-stack"></i>
+                      </div>
+                  </div></a>
+              </div>
+          {{#is_student}}
+              <div class="visits">
+                  <a href="{{config.wwwroot}}/my/courses.php">
+                  <div class="status">
+                      <div class="info">
+                          <h3>My</h3>
+                          <h1>Courses</h1>
+                      </div>
+                      <div class="progresss">
+                          <i class="bi bi-receipt-cutoff"></i>
+                        
+                      </div>
+                  </div></a>
+              </div>
+              <div class="searches">
+                  <a href="{{config.wwwroot}}/calendar/view.php?view=month">
+                  <div class="status">
+                      <div class="info">
+                          <h3>View</h3>
+                          <h1>Calendar</h1>
+                      </div>
+                      <div class="progresss">
+                          <i class="bi bi-calendar2-range"></i>
+                      </div>
+                  </div></a>
+              </div>
+              {{/is_student}}
+              {{^is_student}}
+              <div class="visits">
+                  <a href="{{config.wwwroot}}/local/runningbatch/view_invoice_paid.php">
+                  <div class="status">
+                      <div class="info">
+                          <h3>Invoice</h3>
+                          <h1 class="mb-0">Paid</h1>
+                      </div>
+                      <div class="progresss">
+                          <i class="bi bi-receipt-cutoff"></i>
+                        
+                      </div>
+                  </div></a>
+              </div>
+              <div class="searches">
+                  <a href="{{config.wwwroot}}/local/runningbatch/view_payment_history.php">
+                  <div class="status">
+                      <div class="info">
+                          <h3>Payment</h3>
+                          <h1 class="mb-0">History</h1>
+                      </div>
+                      <div class="progresss">
+                          <i class="bi bi-credit-card-2-front-fill"></i>
+                      </div>
+                  </div></a>
+              </div>
+              {{/is_student}} -->
+
+        <div class="banner-img">
+          <div class="text-banner">
+            <div class="user_card_details">
+
+              <div class="user_name_text_container">
+                <div class="user_name_text">
+
+                  <h2 class="userName-text " id="greeting"></h2>
+                  <h2 class="userName-text " id="name">Harshit</h2>
+                </div>
+                <div class="user_name_text_container">
+                  <p class="userdecs-text">
+                    We,ve got new fun activites for you
+                  </p>
+                </div>
+              </div>
+              <div class="user_image">
+
+                <img src="https://www.pngitem.com/pimgs/m/581-5813504_avatar-dummy-png-transparent-png.png" alt="user">
+              </div>
+            </div>
+            <!-- <p class="userdecs-text">
+           We,ve got new fun activites for you
+          </p> -->
+          </div>
+          <div class="right-img-banner">
+            <img src="{{config.wwwroot}}/local/dashboard_main/image/dashboard-banner.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <!--  today class -->
+      <div class="today_class mt-3">
+        <h1>Today Classes</h1>
+      </div>
+      <div class="">
+        <!-- <h1>Learning Time</h1> -->
+        <div class=" w-100 mt-2  " id="first_card">
+          <div class="section_container ">
+
+
+            <div class="left_section p-4">
+              <h1>E vehicles the future of trans</h1>
+              <p>Lorem ipsum text about the class need to be added here please make content in this space</p>
+
+              <div class="d-flex gap-2">
+                <p>Teacher Name:<span>Harshit Suneja</span></p>
+                <p>
+
+                  <a href="">View Teacher Profile</a>
+                </p>
+              </div>
+              <button class="join_button dark">Join Now</button>
+            </div>
+            <div class="right_section pt-4 ">
+              <div class="time todayTime_Date e_vehicle_time" id="time_today"></div>
+              <div class="todayDate  todayTime_Date e_vehicle_time" id="todayDate_today"></div>
+              <div class="student_img" id="aerospace_image">
+                <img src="https://yislms.com/aerospace/theme/img/aerospace.png" alt="student" class="aerospace">
+              </div>
+            </div>
+          </div>
+          <!-- <div class="time-breakdown-chart"> -->
+          <!-- <div class="percentage-chart percentage-chart-focus"> -->
+          <!-- <svg viewBox="0 0 36 36">
+              <path class="percentage-chart-bg" d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <path class="percentage-chart-stroke" stroke-dasharray="{{percentage}}, 100" d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+            </svg> -->
+          <!-- <div class="hours-count">{{hours}}h {{minutes}}m</div> -->
+          <!-- <div class="counter" >2h 35m</div> -->
+          <!-- </div> -->
+          <!-- <div class="chart-info">
+            <span class="box-class"></span>
+            <h4>Video</h4>
+          </div> -->
+          <!-- </div> -->
+          <!-- </div> -->
+          <!-- <h1>User Activity</h1>
+        <canvas id="barChart"></canvas> -->
+        </div>
+
+        <div class=" w-100 mt-4  " id="second_card">
+          <div class="section_container ">
+
+
+            <div class="left_section  p-4">
+              <h1 class="card_text_color">Technology & Enterprenuer</h1>
+              <p class="card_text_color">Lorem ipsum text about the class need to be added here please make content in
+                this space</p>
+
+              <div class="d-flex gap-2">
+                <p class="card_text_color">Teacher Name:<span>Harshit Suneja</span></p>
+                <p>
+
+                  <a href="" class="card_text_color">View Teacher Profile</a>
+                </p>
+              </div>
+              <div class="card_button d-flex gap-2">
+
+                <button class="join_button">Join Now</button>
+                <button class="join_button" id="second_btn">View Details</button>
+
+              </div>
+            </div>
+            <div class="right_section pt-4 ">
+              <div class="time todayTime_Date" id="time"></div>
+              <div class="todayDate  todayTime_Date" id="todayDate"></div>
+              <div class="student_img">
+                <img src="https://yislms.com/aerospace/theme/img/student.png" alt="student">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="d-flex flex-column   gap-2 " id="secondsec"> -->
+
+    <!-- <div class="d-flex flex-wrap gap-2" id="secondsec"> -->
+
+    <!-- <div class="user-course "> -->
+    <!-- <h1>My Courses</h1> -->
+    <!-- <div class="course-list"> -->
+
+
+    <!-- <div>
+        <p>Fullname: {{fullname}}</p>
+        <p>ID: {{id}}</p>
+        <p>Course Status: {{coursestatus}}</p>
+    </div> -->
+
+
+  </main>
+
+  <div class="right-section d-none" id="">
+    <div class="user-profile">
+      <div class="calendar" id="calendar">
+        <div class="calender-box-left-right">
+          <div class="btn-group">
+            <button class="custome-btn" onclick="prevMonth()">
+              <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M19.9242 9.55559L21.3525 10.9551L15.414 17.0159L21.4748 22.9545L20.0753 24.3828L13.3003 17.7445C13.2064 17.6527 13.1316 17.5432 13.08 17.4224C13.0285 17.3017 13.0013 17.1719 12.9999 17.0405C12.9986 16.9092 13.0232 16.7789 13.0722 16.6571C13.1213 16.5353 13.1939 16.4243 13.2859 16.3306L19.9242 9.55559Z"
+                  fill="#040404" />
+              </svg>
+            </button>
+            <button class="custome-btn" onclick="nextMonth()">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.9999 23.4141L11.5859 22.0001L17.5859 16.0001L11.5859 10.0001L12.9999 8.58606L19.7069 15.2931C19.7999 15.3858 19.8736 15.4961 19.9239 15.6174C19.9742 15.7387 20.0001 15.8687 20.0001 16.0001C20.0001 16.1314 19.9742 16.2614 19.9239 16.3828C19.8736 16.5041 19.7999 16.6143 19.7069 16.7071L12.9999 23.4141Z"
+                  fill="#040404" />
+              </svg>
+            </button>
+          </div>
+          <div class="month-year" id="month-year"></div>
+        </div>
+        <div class="custom-time">
+          <h1 class="custome-time">12 : 22 : 59 PM</h1>
+        </div>
+        <table id="calendar-table">
+          <thead>
+            <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+            </tr>
+          </thead>
+          <tbody id="calendar-body"></tbody>
+        </table>
+      </div>
+      <!-- <div class="logo">
+                    <img src="{{user_picture}}" alt="">
+                    <h2>{{userfirstname}} {{userlastname}}</h2>
+                    <p>{{user_role}}</p>
+                </div> -->
+    </div>
+
+    <div class="reminders">
+      <div class="header">
+        <div class="reminders-text">
+          <h2>Upcoming Event</h2>
+
+        </div>
+
+        see all
+      </div>
+      {{#eventarr}}
+      <div class="notification">
+        <div class="icon">
+          <span class="material-icons-sharp"> volume_up </span>
+        </div>
+        <div class="content">
+          <div class="info">
+            <h3>{{eventname}}</h3>
+            <small class="text_muted"> {{time}} </small>
+          </div>
+          <span class="material-icons-sharp"> more_vert </span>
+        </div>
+      </div>
+      {{/eventarr}}
+      <!-- <div class="notification deactive">
+        <div class="icon">
+          <span class="material-icons-sharp"> edit </span>
+        </div>
+        <div class="content">
+          <div class="info">
+            <h3>Simple Home Page Design</h3>
+            <small class="text_muted"> 08:00 AM - 12:00 PM </small>
+          </div>
+          <span class="material-icons-sharp"> more_vert </span>
+        </div>
+      </div> -->
+
+      <div class="">
+        <div class="newcustome-payment">
+          <h1>Payment History</h1>
+
+          {{#paymenthistory}}
+          <div class="custome-payment-box">
+            <div class="">
+              <h3>{{coursename}}</h3>
+              <p>Status : {{status}}</p>
+            </div>
+            <div class="">
+              <p>₹ {{price}}</p>
+              <p>Day : {{paymenttime}}</p>
+            </div>
+          </div>
+          {{/paymenthistory}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/is_student}}
+<!-- ADMIN PANEL -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{^is_student}}
+<div class="main-card">
+  <div class="card-admin">
+    <div class="card card_admin_card">
+      <div class="card-inner">
+
+        <div class="card-text">
+          <span>
+            <h1>{{studentcount}}</h1>
+          </span>
+          <span>
+            <p class="card_header_text">Total Students</p>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card card_admin_card">
+      <div class="card-inner">
+
+        <div class="card-text">
+          <span>
+            <h1>{{coursecount}}</h1>
+          </span>
+          <span>
+            <p class="card_header_text">Course</p>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card card_admin_card">
+      <div class="card-inner">
+        <div class="img-card">
+          <svg width="70" height="71" viewBox="0 0 70 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="35" cy="35.5" r="35" fill="#9BA1FF" fill-opacity="0.1" />
+            <path
+              d="M45.8004 41.4996V29.4996C45.8004 28.1796 44.7204 27.0996 43.4004 27.0996H27.8004C26.4804 27.0996 25.4004 28.1796 25.4004 29.4996V41.4996C25.4004 42.8196 26.4804 43.8996 27.8004 43.8996H43.4004C44.7204 43.8996 45.8004 42.8196 45.8004 41.4996ZM32.6004 40.2996V30.6996L39.8004 35.4996L32.6004 40.2996Z"
+              fill="#9BA1FF" />
+          </svg>
+        </div>
+        <div class="card-text">
+          <span>
+            <h1>{{videocount}}</h1>
+          </span>
+          <span>
+            <p class="card_header_text">Total Video</p>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card card_admin_card">
+      <div class="card-inner">
+        <div class="img-card">
+          <svg width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="35.5" cy="35.5" r="35" fill="#FFBB44" fill-opacity="0.1" />
+            <path
+              d="M43.5 30.5V28.5C43.5 27.397 42.603 26.5 41.5 26.5H28.5C26.846 26.5 25.5 27.846 25.5 29.5V41.5C25.5 43.701 27.294 44.5 28.5 44.5H43.5C44.603 44.5 45.5 43.603 45.5 42.5V32.5C45.5 31.397 44.603 30.5 43.5 30.5ZM41.5 39.5H39.5V35.5H41.5V39.5ZM28.5 30.5C28.2425 30.4885 27.9994 30.3781 27.8213 30.1918C27.6431 30.0055 27.5437 29.7577 27.5437 29.5C27.5437 29.2423 27.6431 28.9945 27.8213 28.8082C27.9994 28.6219 28.2425 28.5115 28.5 28.5H41.5V30.5H28.5Z"
+              fill="#FFBB44" />
+          </svg>
+        </div>
+        <div class="card-text">
+          <span>
+            <h1>{{totalamount}}</h1>
+          </span>
+          <span>
+            <p class="card_header_text">Total Earning</p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1 class="student_usage">Student Usage</h1>
+  <div class="custome-bar-chart">
+    <div class="card w-25  p-4 custome-bar-chart-card">
+      <div class="d-flex justify-content-between">
+        <div class="card_item_chart_para">
+
+          <p class="mb-3">Active Students</p>
+          <p id="card_item_chart_para">student</p>
+        </div>
+        <a class="view-all" href="{{config.wwwroot}}/local/courses/users_log_view.php">
+          <p>View All</p>
+        </a>
+      </div>
+      <canvas id="myBarChart" style="width:100%; width:600px"></canvas>
+      <div>
+        <div>
+          <div class="chartjs-size-monitor">
+            <!-- Size monitor content -->
+
+          </div>
+          <canvas id="canvas2" style="display: block" class="chartjs-render-monitor"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card w-25  p-4 custome-bar-chart-card">
+      <div class="d-flex justify-content-between">
+        <h1 class="mb-3">Students Enrolled & Left</h1>
+        <a class="view-all" href="{{config.wwwroot}}/local/courses/users_log_view.php">
+          <p>View All</p>
+        </a>
+      </div>
+      <div>
+        <div>
+          <div class="chartjs-size-monitor">
+            <!-- Size monitor content -->
+          </div>
+          <canvas id="canvas2" style="display: block" class="chartjs-render-monitor"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card w-25  p-4 custome-bar-chart-card">
+      <h1 class="mb-3">Registration vs Payment Metrics :</h1>
+      <div class="">
+        <div class="canvassid-custom">
+          <div class="canvassid-custom-data">
+            <div class="">
+              <span><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect y="0.869141" width="24" height="24" rx="6" fill="#FF7648" fill-opacity="0.2" />
+                  <circle cx="11.9997" cy="12.8698" r="5.13153" fill="#FF7648" />
+                </svg>
+
+              </span>
+              <span>Registered Student :{{studentcount}}</span>
+
+            </div>
+            <div class="">
+              <span><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect y="0.736328" width="24" height="24" rx="6" fill="#4DC591" fill-opacity="0.2" />
+                  <circle cx="11.9997" cy="12.737" r="5.13153" fill="#4DC591" />
+                </svg>
+
+
+              </span>
+              <span>Payment made by :{{paidstudents}}</span>
+
+            </div>
+            <div class="">
+              <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" rx="6" fill="#9BA1FF" fill-opacity="0.2" />
+                  <circle cx="11.9997" cy="12.0007" r="5.13153" fill="#9BA1FF" />
+                </svg>
+              </span>
+              <span>Registered Only :{{notpaid}}</span>
+
+            </div>
+
+          </div>
+          <div class="chartjs-size-monitor">
+            <!-- Size monitor content -->
+          </div>
+          <canvas id="canvassid" style="display: block" class="chssartjs-render-monitord"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="custome-table-transtion">
+    <div class="custome-img-section">
+      <div class="card">
+        <div class="custome-Transactions">
+          <h1>Transactions</h1>
+          <a class="view-all" href="{{config.wwwroot}}/local/courses/payment_view.php">
+            <p>View All</p>
+          </a>
+
+        </div>
+
+        <div class="transactionObjects-id">
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card custome-chart-bar">
+      <div class="custome-value-heading">
+        <h1>Earning</h1>
+        <select name="" id="earning">
+          <option value="12">This Year</option>
+          <option value="6">Last 6 month</option>
+          <option value="3">Last 3 month</option>
+        </select>
+      </div>
+
+      <canvas id="customCanvas" style="display: block; height: 220px; " class="custom-chartjs-render-monitor"></canvas>
+    </div>
+
+  </div>
+</div>
+{{/is_student}}
+<!-- Frontend Code Start by Jazib Zaidi   -->
+<script>
+
+</script>
+{{^is_student}}
+
+<script>
+
+  const newnotification = document.querySelector(".notification-for-wishlist")
+  const transactionObjectsId = document.querySelector('.transactionObjects-id')
+  let lastindex = 0
+  const data = async () => {
+    const response = await fetch('{{config.wwwroot}}/local/transactionapi.php')
+    const responseData = await response.json()
+
+    if (lastindex < Number(responseData.lastchange) && lastindex != 0) {
+      newnotification.innerHTML = `<div class="notification">
+    ${responseData.response[0].username} bought the ${responseData.response[0].coursename} course for ₹${responseData.response[0].amount}
+          </div>`
+      newnotification.classList.add('notification-for-wishlist-togale')
+      setTimeout(() => {
+        newnotification.classList.remove('notification-for-wishlist-togale')
+      }, 5000)
+
+    }
+
+    lastindex = Number(responseData.lastchange)
+    const mapdata = responseData.response.map((e) => {
+      return `   <div class=" single-row">
+        <div class="single-row-img">
+          <span class="user-icon">
+            <svg
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 17V18C7 18.6 7.4 19 8 19H16C16.6 19 17 18.6 17 18V17C17 16.2044 16.6839 15.4413 16.1213 14.8787C15.5587 14.3161 14.7956 14 14 14H10C9.20435 14 8.44129 14.3161 7.87868 14.8787C7.31607 15.4413 7 16.2044 7 17ZM15 8C15 8.79565 14.6839 9.55871 14.1213 10.1213C13.5587 10.6839 12.7956 11 12 11C11.2044 11 10.4413 10.6839 9.87868 10.1213C9.31607 9.55871 9 8.79565 9 8C9 7.20435 9.31607 6.44129 9.87868 5.87868C10.4413 5.31607 11.2044 5 12 5C12.7956 5 13.5587 5.31607 14.1213 5.87868C14.6839 6.44129 15 7.20435 15 8Z"
+                stroke="#699BF7"
+                stroke-width="2"
+              />
+            </svg>
+          </span>
+        </div>
+        <div class="single-row-text">
+          <h3>${e.coursename} ₹${e.amount}</h3>
+          <p>From : ${e.username}</p>
+        </div>
+        <div class="singl-row-time">
+          <p>${e.paymenttime}</p>
+        </div>
+      </div>`;
+    })
+    transactionObjectsId.innerHTML = mapdata.join('')
+
+  }
+
+  setInterval(() => {
+
+    data()
+  }, 7000)
+  data()
+
+  const username = []
+  const timedur = []
+  const topuserapi = async () => {
+    const response = await fetch('{{config.wwwroot}}/local/topusersapi.php')
+    const data = await response.json()
+    console.log(data)
+    for (let i = 0; i < data.response.length; i++) {
+      username.push(data.response[i].username)
+      timedur.push(data.response[i].totalduration)
+
+    }
+    var ctx2 = document.getElementById("canvas2").getContext("2d");
+    window.myChart2 = new Chart(ctx2, configChart2);
+
+    configChart2.data.labels = username
+    console.log(configChart2.data.datasets[0].data)
+    configChart2.data.datasets[0].data = timedur
+  }
+  topuserapi()
+
+</script>
+{{/is_student}}
+<script>
+
+
+  const GenrateRefral = async (id, g) => {
+    const responce = await fetch('{{config.wwwroot}}/local/promocode/GenrateRefralCode.php', {
+      method: "POST",
+      body: JSON.stringify({ courseid: id })
+    })
+
+
+    const data = await responce.json()
+    console.log(data)
+
+    g.style.display = 'block'
+    setTimeout(() => {
+      g.style.display = 'none'
+
+    }, 2000)
+    window.navigator.clipboard.writeText(data.refral)
+  }
+
+
+
+
+  function genraterefrelcode(e, i) {
+    const g = i.querySelector('.copiedd')
+    GenrateRefral(e, g)
+
+  }
+
+
+
+
+
+  window.addEventListener('load', () => {
+    const Dashboard = document.querySelector('.Dashboard ')
+    Dashboard.classList.add('active')
+  })
+
+
+
+
+  const customdropdowns = document.querySelector('.custom-drop-down')
+
+
+
+  window.localStorage.setItem('wishlist', '{{wishlistCountNumber}}')
+
+  const wishlistcount = document.querySelector(".wishlist-count")
+  const getlocall = window.localStorage.getItem('wishlist')
+  wishlistcount.innerText = getlocall;
+  const notificationforwishlist = document.querySelector(".notification-for-wishlist")
+  const wishlist = async (courseid, userid) => {
+    const url =
+      "{{config.wwwroot}}/local/wishlistapi.php";
+    const data = {
+      userid,
+      courseid
+
+    };
+
+    // Making a POST request
+    const fetchData = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    // Getting the response
+    const response = await fetchData.json();
+    fetchwishlist()
+    console.log(response)
+
+  };
+
+
+  function handelclick(...e) {
+
+
+    const classlistparent = e[1].querySelector('i')
+
+    if (classlistparent.classList.contains('fa-solid')) {
+
+      classlistparent.classList.remove('fa-solid')
+      classlistparent.classList.add('fa-regular')
+
+    } else {
+
+
+      notificationforwishlist.innerHTML = `<div class="notification">
+      <i class="fa-solid fa-heart " style="color: red"></i>
+         ${e[4]} added to your wishlist  
+         <i class="fa-solid fa-heart " style="color: red"></i>
+          </div>`
+      notificationforwishlist.classList.add('notification-for-wishlist-togale')
+      setTimeout(() => {
+        notificationforwishlist.classList.remove('notification-for-wishlist-togale')
+
+      }, 2000)
+
+      classlistparent.classList.remove('fa-regular')
+      classlistparent.classList.add('fa-solid')
+    }
+
+
+
+
+    wishlist(e[2], e[3])
+
+
+
+  }
+
+</script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  var customConfig = {
+    type: 'line',
+    data: {
+      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Octuber", "November", "December"],
+      datasets: [{
+        label: 'Amount',
+        backgroundColor: 'rgba(77, 197, 145, 0.2)',
+        borderColor: '#4DC591',
+        borderWidth: 3,
+        fill: true,
+        lineTension: 0.0,
+        data: [80, 100, 30, 10, 10, 20, 90, 10, 50, 100, 130, 70],
+      }]
+    },
+    options: {
+      // Your custom chart options
+    }
+  };
+
+  window.addEventListener('load', () => {
+    var customCtx = document.getElementById('customCanvas').getContext('2d');
+    let customLine;
+
+    const destroyChart = () => {
+      if (customLine) {
+        customLine.destroy();
+      }
+    };
+    let arr = []
+    const datagraph = async () => {
+
+      const res = await fetch('{{config.wwwroot}}/local/paymentgraphapi.php')
+      const graph = await res.json()
+
+      for (let i = 1; i <= 12; i++) {
+        arr.push(graph.responsee[i])
+      }
+      newgraphfn(12)
+
+    }
+
+
+
+    datagraph()
+    if (document.readyState === 'loading') {
+      console.log('Page is still loading...');
+    } else {
+      console.log('Page has finished loading.');
+    }
+    const newgraphfn = (index) => {
+      let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Octuber", "November", "December"]
+      destroyChart()
+
+      customConfig.data.labels = month.slice(0, index)
+
+      customConfig.data.datasets[0].data = arr.slice(0, index)
+      customLine = new Chart(customCtx, customConfig);
+    }
+
+    const earning = document.querySelector('#earning')
+    earning.addEventListener('change', (e) => {
+      newgraphfn(earning.value)
+      console.log(earning.value)
+    })
+  })
+
+
+
+  var configg = {
+    type: "doughnut", // Set the chart type to "doughnut"
+    data: {
+      labels: ["Enrolled", "Registered Only"], // Labels for each segment
+      datasets: [
+        {
+          backgroundColor: ["#4DC591", "#9BA1FF"], // Colors for each segment
+          data: ['{{enrolpercentage}}', '{{notregisteredpercentage}}'], // Data values for each segment
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: true,
+          position: "top",
+        },
+        tooltip: {
+          enabled: true,
+        },
+      },
+    },
+  };
+
+
+  var configChart2 = {
+    type: "bar",
+    data: {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [
+
+        {
+          label: "Left",
+          backgroundColor: "#4DC591",
+          borderRadius: 10, // Set the border radius for bars in this dataset
+          borderWidth: 0,
+          borderColor: "#4DC591",
+          fill: false,
+          data: [80, 100, 30, 10, 10, 20, 90],
+        },
+      ],
+    },
+    options: {
+      // Your chart options
+    },
+  };
+
+  window.onload = function () {
+    var ctx = document.getElementById("canvassid").getContext("2d");
+    window.myLine = new Chart(ctx, configg);
+
+
+  };
+</script>
+{{#is_student}}
+<script>
+  const custometime = document.querySelector(".custome-time");
+  setInterval(() => {
+    const today = new Date();
+    const formattedHours = today.getHours() % 12 || 12;
+    const ampm = today.getHours() >= 12 ? "pm" : "am";
+    const second =
+      today.getSeconds() < 10 ? `0${today.getSeconds()}` : today.getSeconds();
+    custometime.innerText = `${formattedHours}:${today.getMinutes()}:${second} ${ampm}`;
+  }, 1000);
+  var config = {
+    type: "line",
+    data: {
+      labels: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thusday",
+        "Fryday",
+        "saturday",
+        "Sunday",
+      ],
+      datasets: [
+        {
+          label: "APAC PME",
+          backgroundColor: "#4DC591", // Replace with actual color
+          borderColor: "#4DC591", // Replace with actual color
+          fill: false,
+          lineTension: 0.3, // Adjust this value to control the curvature
+          data: [50, 300, 100, 450, 150, 200, 500],
+        },
+      ],
+    },
+    options: {
+      // Your chart options
+    },
+  };
+
+  console.log("new file ");
+  var ctx = document.getElementById("canvas").getContext("2d");
+  console.log(ctx);
+  window.myLine = new Chart(ctx, config);
+</script>
+{{/is_student}}
+<script>
+  let currentMonth;
+  let currentYear;
+
+  function generateCalendar(month, year) {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+
+    const monthYearElement = document.getElementById("month-year");
+    monthYearElement.textContent = new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      year: "numeric",
+    }).format(new Date(year, month));
+
+    const calendarBody = document.getElementById("calendar-body");
+    calendarBody.innerHTML = "";
+
+    let dayCount = 1;
+    for (let i = 0; i < 6; i++) {
+      const row = document.createElement("tr");
+
+      for (let j = 0; j < 7; j++) {
+        const cell = document.createElement("td");
+        if (i === 0 && j < firstDayOfMonth) {
+          cell.textContent = "";
+        } else if (dayCount <= daysInMonth) {
+          cell.textContent = dayCount;
+          if (isToday(year, month, dayCount)) {
+            cell.classList.add("today");
+          }
+          dayCount++;
+        }
+        cell.addEventListener("click", handleDateClick);
+        row.appendChild(cell);
+      }
+      calendarBody.appendChild(row);
+    }
+  }
+
+  function isToday(year, month, day) {
+    const today = new Date();
+    return (
+      today.getFullYear() === year &&
+      today.getMonth() === month &&
+      today.getDate() === day
+    );
+  }
+
+  function handleDateClick(event) {
+    alert(`Clicked on ${event.target.textContent}`);
+  }
+
+  function updateCalendar() {
+    const currentDate = new Date();
+    currentMonth = currentDate.getMonth();
+    currentYear = currentDate.getFullYear();
+
+    generateCalendar(currentMonth, currentYear);
+  }
+  //
+  // for days wishes
+  document.addEventListener("DOMContentLoaded", function () {
+    var time = new Date().getHours();
+    var greeting;
+
+    if (time < 12) {
+      greeting = "Good Morning,";
+    } else if (time < 18) {
+      greeting = "Good Afternoon,";
+    } else {
+      greeting = "Good evening,";
+    }
+
+    var greetingElement = document.getElementById("greeting");
+    greetingElement.textContent = greeting;
+  });
+  //
+  // for card carousel
+  document.addEventListener('DOMContentLoaded', function () {
+    new Splide('#splide', {
+      type: 'loop',
+      perPage: 3,
+      focus: 'center',
+      // autoplay: true,
+      interval: 8000,
+      flickMaxPages: 3,
+      updateOnMove: true,
+      pagination: false,
+      padding: '10%',
+      throttle: 300,
+      breakpoints: {
+        1440: {
+          perPage: 1,
+          padding: '30%'
+        }
+      }
+    }).mount();
+  });
+  // 
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    slidesPerGroup: 3,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+  // 
+  var swiper1 = new Swiper(".mySwiper1", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    slidesPerGroup: 3,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+  //
+  function prevMonth() {
+    currentMonth--;
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
+    generateCalendar(currentMonth, currentYear);
+  }
+
+  function nextMonth() {
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+    generateCalendar(currentMonth, currentYear);
+  }
+
+  updateCalendar();
+</script>
+
+<script>
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var myChart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: [],
+      datasets: [
+        {
+          backgroundColor: ["#ffc107", "#ff3c41", "#1b9c85"],
+          data: [25, 75, 18],
+        },
+      ],
+    },
+  });
+
+
+</script>
+<script src="
+https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
+"></script>
+
+
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
+
+<script>
+
+</script>
+<script>
+  new Splide(".splide", {
+    type: "loop",
+    perPage: 3,
+    arrows: true,
+    pagination: true,
+    focus: "center",
+    gap: "0.5em"
+  }).mount(window.splide.Extensions);
+
+
+
+</script>
+<!-- kailash js   -->
+<script>
+  var timeElement = document.getElementById("time");
+  var timeElement2 = document.getElementById("time_today");
+
+  var dateElement = document.getElementById("todayDate");
+  var dateElement2 = document.getElementById("todayDate_today");
+
+  setInterval(() => {
+    // today time 
+    const time = new Date().toLocaleTimeString();
+    timeElement.textContent = time;
+    const time1 = new Date().toLocaleTimeString();
+    timeElement2.textContent = time1;
+    // time_today
+
+    //today date 
+    const date = new Date().toLocaleDateString();
+    dateElement.textContent = date;
+    const date1 = new Date().toLocaleDateString();
+    dateElement2.textContent = date1;
+  }, 1000)
+  // chartjs
+  var ctx = document.getElementById('barChart').getContext('2d');
+  //   /// this week bar chart
+  var chartData = {
+    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', "Sun"],
+
+    datasets: [{
+      label: 'Sample Bar Chart',
+      backgroundColor: 'white',
+      borderColor: 'rgba(75,192,192,1)',
+
+      borderWidth: 1,
+      // hoverBackgroundColor: 'rgba(75,192,192,0.4)',
+      hoverBorderColor: 'rgba(75,192,192,1)',
+      data: [65, 59, 80, 81, 56, 55, 40, 50]
+    }]
+    ,
+
+  };
+
+  // Create the chart
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: chartData,
+    options: {
+      scales: {
+        y: {
+          ticks: {
+            color: "white",
+            beginAtZero: true
+          },
+        },
+        x: {
+          ticks: {
+            color: "white",
+            beginAtZero: true
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          labels: {
+            // This more specific font property overrides the global property
+            color: "white"
+
+          }
+        }
+      }
+    }
+  });
+</script>
+<script>
+  // bar chart 1
+  var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+  var yValues = [55, 49, 44, 24, 15];
+  var barColors = ["#dbb029"];
+
+  new Chart("myBarChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+      }]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: "World Wine Production 2018"
+      }
+    }
+  });
+</script>
