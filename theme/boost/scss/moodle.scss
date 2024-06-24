@@ -48,3 +48,9 @@ $breadcrumb-divider-rtl: "◀" !default;
 @import "moodle/primarynavigation";
 @import "moodle/secondarynavigation";
 @import "moodle/tertiarynavigation";
+.loginform .fcol{
+    background-image:url([[pix:theme|logimage]]);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+  }
