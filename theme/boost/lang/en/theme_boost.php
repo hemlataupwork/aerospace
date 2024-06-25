@@ -66,3 +66,8 @@ $string['totop'] = 'Go to top';
 $string['currentinparentheses'] = '(current)';
 $string['privacy:drawernavclosed'] = 'The current preference for the navigation drawer is closed.';
 $string['privacy:drawernavopen'] = 'The current preference for the navigation drawer is open.';
+
+$string['signinaccount'] = 'Sign in your account';
+$string['welcomeback'] = 'Welcome back! Login with your data that you entered during registration.';
+$string['donthaveanaccount'] = 'Don\'t have an account?';
+$string['signinwith'] = 'Sign in with';
