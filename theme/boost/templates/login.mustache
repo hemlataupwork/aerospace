@@ -31,6 +31,316 @@
 }}
 {{> theme_boost/head }}
 <style>
+  
+.customloginlogin-container  a {
+  color: #f26229;
+}
+
+.customloginlogin-container {
+  background-color: #f262290f;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+}
+.customloginlogin-container  .card-title {
+  font-family: "Roboto Condensed", sans-serif;
+  color: #242a6e;
+  text-align: center;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 75px;
+  margin-bottom: 0;
+}
+.customloginlogin-container  .card-text {
+  color: #666;
+  margin-bottom: 30px;
+  text-align: center;
+  margin-top: 0;
+  font-size: 14px;
+}
+.customloginlogin-container  .recent-loginsec {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.customloginlogin-container  .recent-heading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.customloginlogin-container .recent-heading h4 {
+  margin: 0;
+}
+.customloginlogin-container  .recent-logins {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+  align-items: center;
+}
+.customloginlogin-container .recent-login {
+  background: #fff;
+  border: 1px solid #cccccc85;
+  border-radius: 8px;
+  padding: 15px 30px;
+  width: 180px;
+  text-align: center;
+}
+.customloginlogin-container .recent-login p {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: center;
+}
+.customloginlogin-container .recent-login img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.customloginlogin-container .recent-login img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.customloginlogin-container .add-account {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #ff6d21;
+  border-radius: 50%;
+  width: 100px !important;
+  height: 100px !important;
+  color: #ff6d21;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.customloginlogin-container .add-account:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.customloginlogin-container .signup-help {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  text-align: center;
+  column-gap: 10px;
+  width: 500px;
+}
+.customloginlogin-container .signup-help a.video {
+  color: #242a6e;
+  margin: 0 0px;
+  text-align: left;
+  font-weight: normal;
+  text-decoration: underline;
+}
+.customloginlogin-container .vide-icon {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+.customloginlogin-container .vide-icon img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.customloginlogin-container .or-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+.customloginlogin-container .or-line::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #ff6d21;
+  left: 0;
+}
+.customloginlogin-container .or-line span {
+  background: #fef6f2;
+  display: inline-block;
+  z-index: 9999;
+  padding: 0 15px;
+}
+.customloginlogin-container .signup-help a {
+  color: #242a6e;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 600;
+}
+.customloginlogin-container .signup-help a:hover {
+  text-decoration: underline;
+}
+.customloginlogin-container .loginform-sec {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 50px;
+  background: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.customloginlogin-container .d-flex.justify-content-space-between {
+  justify-content: center;
+  column-gap: 30px;
+}
+.customloginlogin-container .form-control {
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+.customloginlogin-container .form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-left: 0 !important;
+}
+
+.customloginlogin-container .form-check-input {
+  display: none;
+}
+
+.customloginlogin-container .form-check-label {
+  position: relative;
+  padding-left: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.customloginlogin-container .form-check-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 1px solid #505050;
+  border-radius: 4px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.customloginlogin-container .form-check-input:checked + .form-check-label::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 6px;
+  height: 12px;
+  border: solid #f26229;
+  border-width: 0 2px 2px 0;
+}
+.customloginlogin-container .btn-primary:hover {
+  background: #1b226f;
+}
+.customloginlogin-container .btn-secondary:hover {
+  background: #db480d;
+}
+.customloginlogin-container .btn-primary {
+  background-color: #242a6e;
+  border: none;
+
+  border-radius: 5px;
+  font-size: 0.76471em;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 15px 45px;
+  transition: color 0.1s ease-in, background-color 0.1s ease-in;
+}
+.customloginlogin-container .btn-secondary {
+  background-color: #f26229;
+  border: none;
+
+  border-radius: 5px;
+  font-size: 0.76471em;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 15px 45px;
+  transition: color 0.1s ease-in, background-color 0.1s ease-in;
+}
+.customloginlogin-container .social-login {
+  margin-top: 20px;
+}
+.customloginlogin-container .social-login p {
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+.customloginlogin-container .social-login p span {
+  background: #fff;
+  z-index: 9999;
+  position: relative;
+  padding: 0 20px;
+}
+.customloginlogin-container .social-login p::after {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #cccccc;
+  left: 0;
+  top: 10px;
+}
+.customloginlogin-container .social-login img {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #242a6e;
+  border-radius: 50%;
+}
+.customloginlogin-container .social-login img:hover {
+  border: 1px solid #f26229;
+}
+.customloginlogin-container .social-icons {
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.customloginlogin-container .terms {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #999;
+}
+div#StickyBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    overflow: visible;
+}
 .video-container {
     position: fixed;
     top: 0;
@@ -85,6 +395,89 @@
                 </section>
             </div>
         </div>
+		<div class="customloginlogin-container text-center">
+      <h1 class="card-title">Welcome back</h1>
+      <p class="card-text">Steam Education Tool and Kit Store</p>
+      <div class="recent-loginsec">
+    <div class="recent-heading"><h4>Recent Logins</h4></div>
+    <div class="recent-logins">
+        <div class="recent-login">
+            <img src="{{ pix 'theme' 'profile.png' }}" alt="User">
+            <p>Zain Sajid</p>
+        </div>
+        
+        <div class="recent-login">
+            <img src="{{ pix 'theme' 'woman.png' }}" alt="User">
+            <p>Moby Weiss</p>
+        </div>
+        <div class="recent-login add-account">
+            <p>+</p>
+            <p>Add Account</p>
+        </div>
+        <div class="signup-help ">
+            <a href="#">Sign up Help</a> 
+            <div class="vide-icon">
+                <img src="{{ pix 'theme' 'video.png' }}" alt="Icon">
+                <a href="#" class="video">This video will help you to create a new account</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="or-line">
+        <span>or</span>
+      </div>
+      <div class="loginform-sec">
+        <form class="login-form" action="" method="post">
+          <div class="d-flex justify-content-space-between">
+            <div class="col-md-2 "></div>
+            <div class="col-md-4 mb-3">
+              <input type="text" class="form-control" placeholder="Phone number, username or email">
+            </div>
+            <div class="col-md-4 mb-3">
+              <input type="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="col-md-2 "></div>
+          </div>
+          <div class="d-flex justify-content-space-between">
+            <div class="col-md-2 "></div>
+            <div class="col-md-4 mb-3">
+              <div class="form-check mb-3 d-flex align-items-center">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember for 30 days</label>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <a href="#" class="d-block mb-3">Forgot password?</a>
+            </div>
+            <div class="col-md-2 "></div>
+          </div>
+          <div class="d-flex justify-content-space-between">
+            <div class="col-md-3 "></div>
+            <div class="col-md-6 ">
+              <button type="submit" class="btn btn-primary mb-3 w-100">Sign in</button>
+              <button type="button" class="btn btn-secondary mb-3 w-100">Create New Account</button>
+            </div>
+            <div class="col-md-3 "></div>
+          </div>
+        </form>
+        <div class="social-login">
+          <p>
+            <span>Or continue with</span>
+          </p>
+          <a class="social-icons">
+            <img src="img/google.png" alt="Icon">
+          </a>
+          <a class="social-icons">
+            <img src="img/facebook.png" alt="Icon">
+          </a>
+          <a class="social-icons">
+            <img src="img/twitter.png" alt="Icon">
+          </a>
+        </div>
+        <div class="terms"> By clicking a button above, you agree to our <a href="#">terms of use</a> and <a href="#">privacy policies</a>. </div>
+      </div>
+    </div>
     </div>
     {{> theme_boost/footer }}
 </div>

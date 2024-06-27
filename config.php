@@ -8,8 +8,8 @@ $CFG->dbtype    = 'mysqli';
 $CFG->dblibrary = 'native';
 $CFG->dbhost    = 'localhost';
 $CFG->dbname    = 'aerospace';
-$CFG->dbuser    = 'yatharthd';
-$CFG->dbpass    = 'Ya@8980@6849';
+$CFG->dbuser    = 'root';
+$CFG->dbpass    = '';
 $CFG->prefix    = 'aero_';
 $CFG->dboptions = array (
   'dbpersist' => 0,
@@ -18,8 +18,8 @@ $CFG->dboptions = array (
   'dbcollation' => 'utf8mb4_unicode_ci',
 );
 
-$CFG->wwwroot   = 'https://yislms.com/aerospace';
-$CFG->dataroot  = '/var/www/moodledata_aerospace';
+$CFG->wwwroot   = 'http://localhost/aerospace';
+$CFG->dataroot  = 'C:\xampp\htdocs\moodledata';
 $CFG->admin     = 'admin';
 $CFG->directorypermissions = 0777;
 
